@@ -25,18 +25,22 @@ class Clock {
         //self.formatter = formatter
         self.isRunning = false
         self.countdown = countdown
+        self.timeEdit = timeEdit
         self.timeSpent = 0
     }
     
-    func setStartTime() {
-        startTime = Date()
-    }
     
     func startTimer() {
         setStartTime()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: runTimer(timer:))
         isRunning = true
         }
+    
+    
+    func setStartTime() {
+        startTime = Date()
+    }
+    
     
     func runTimer(timer : Timer) {
         
@@ -52,15 +56,14 @@ class Clock {
             isRunning = false
             countdown.text = "TIME'S UP"
         }
-        
     }
+    
     
     func stopTimer() {
         
         secondsLeft -= timeSpent
-        //timeEdit.text = String(secondsLeft)
+        timeEdit.text = String(secondsLeft)
         isRunning = false
         timer?.invalidate()
     }
-    
 }

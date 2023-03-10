@@ -37,15 +37,14 @@ class ViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: Any) {
         if let clockOne {
-            if clockOne.isRunning {
-                clockOne.stopTimer()
-            } else {
-                //if let timeEditInt = Int(timeEdit.text ?? "120") {timeLeft = timeEditInt}
-                //startTime = Date()
-                //isRunning = true
-                //startTimer()
-                
+            if !clockOne.isRunning {
+                if let timeEditText = timeEdit.text {
+                    secondsLeft = Int(timeEditText) ?? secondsLeft
+                    clockOne.secondsLeft = secondsLeft
+                }
                 clockOne.startTimer()
+            } else {
+                clockOne.stopTimer()
             }
         }
     }
