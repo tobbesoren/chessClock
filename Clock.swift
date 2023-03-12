@@ -18,14 +18,16 @@ class Clock {
     var isRunning : Bool
     var countdown : UILabel!
     var timeEdit: UITextField!
+    var button: UIButton!
     
-    init(secondsLeft: Int, countdown: UILabel!, timeEdit: UITextField!) {
+    init(secondsLeft: Int, countdown: UILabel!, timeEdit: UITextField!, button: UIButton!) {
         self.secondsLeft = secondsLeft
         self.timer = Timer()
         //self.formatter = formatter
         self.isRunning = false
         self.countdown = countdown
         self.timeEdit = timeEdit
+        self.button = button
         self.timeSpent = 0
     }
     
@@ -54,6 +56,7 @@ class Clock {
             timer.invalidate()
             isRunning = false
             countdown.text = "TIME'S\nUP"
+            button.setTitle("Start", for: .normal)
         }
     }
     
@@ -62,7 +65,7 @@ class Clock {
         
         secondsLeft -= timeSpent
         print(secondsLeft)
-        timeEdit.text = String(secondsLeft)
+        //timeEdit.text = String(secondsLeft)
         isRunning = false
         timer?.invalidate()
     }
