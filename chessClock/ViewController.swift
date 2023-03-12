@@ -10,41 +10,47 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var timeEdit: UITextField!
+    @IBOutlet weak var countdown1: UILabel!
+    @IBOutlet weak var countdown2: UILabel!
+    @IBOutlet weak var button: UIButton!
     
-    @IBOutlet weak var countdown: UILabel!
-    
-    //var isRunning = false
-    //var timer : Timer?
-    var secondsLeft : Int = 15
-    //var timeSpent : Int = 0
-    
-    var startTime : Date?
-    var stopTime : Date?
+    var secondsLeftOne : Int = 15
+    var secondsLeftTwo : Int = 15
+   
     var clockOne : Clock?
+    var startTimeOne : Date?
+    var stopTimeOne : Date?
     
-    
-    
-    //let formatter = DateFormatter()
+    var clockTwo : Clock?
+    var startTimeTwo : Date?
+    var stopTimeTwo : Date?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //formatter.timeStyle = .medium
-        clockOne = Clock(secondsLeft: secondsLeft, countdown: countdown, timeEdit: timeEdit)
+       
+        clockOne = Clock(secondsLeft: secondsLeftOne, countdown: countdown1, timeEdit: timeEdit)
+        
+        clockTwo = Clock(secondsLeft: secondsLeftTwo, countdown: countdown2, timeEdit: timeEdit)
         
     }
     
     
     @IBAction func buttonPressed(_ sender: Any) {
-        if let clockOne {
-            if !clockOne.isRunning {
-                if let timeEditText = timeEdit.text {
-                    secondsLeft = Int(timeEditText) ?? secondsLeft
-                    clockOne.secondsLeft = secondsLeft
-                }
+        if let clockOne,
+           let clockTwo,
+           //let timeEditText = timeEdit.text,
+           let button {
+            if !clockOne.isRunning && !clockTwo.isRunning {
+                //secondsLeftOne = Int(timeEditText) ?? secondsLeftOne
+                //clockOne.secondsLeft = secondsLeftOne
                 clockOne.startTimer()
+                button.setTitle("Stop", for: .normal)
+                
             } else {
                 clockOne.stopTimer()
+                clockTwo.stopTimer()
+                button.setTitle("Start", for: .normal)
             }
         }
     }

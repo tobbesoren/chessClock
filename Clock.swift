@@ -49,12 +49,11 @@ class Clock {
         } else {return}
         
         if secondsLeft - timeSpent  > 0 {
-            print(secondsLeft)
             countdown.text = String(secondsLeft - timeSpent)
         } else {
             timer.invalidate()
             isRunning = false
-            countdown.text = "TIME'S UP"
+            countdown.text = "TIME'S\nUP"
         }
     }
     
@@ -62,6 +61,7 @@ class Clock {
     func stopTimer() {
         
         secondsLeft -= timeSpent
+        print(secondsLeft)
         timeEdit.text = String(secondsLeft)
         isRunning = false
         timer?.invalidate()
